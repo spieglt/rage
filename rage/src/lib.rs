@@ -171,7 +171,7 @@ fn read_recipients(
 }
 
 #[derive(Debug)]
-pub struct AgeOptions {
+struct AgeOptions {
     input: Option<String>,
     help: bool,
     version: bool,
@@ -403,8 +403,25 @@ fn _main(opts: AgeOptions) -> Result<(), error::Error> {
     }
 }
 
+#[repr(C)]
+#[derive(Debug)]
+pub struct COptions {
+    input: *const u8,
+    help: u8,
+    version: u8,
+    encrypt: u8,
+    decrypt: u8,
+    passphrase: u8,
+    max_work_factor: u8,
+    armor: u8,
+    recipient: *const *const u8,
+    recipients_file: *const *const u8,
+    identity: *const *const u8,
+    output: *const u8,
+}
+
 #[no_mangle]
-pub extern fn wrapper() {
+pub extern fn wrapper(opts: COptions) {
     let opts = AgeOptions{
         input: Some("".to_string()),
         help: false,
