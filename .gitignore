@@ -3,3 +3,6 @@
 
 /target
 **/*.rs.bk
+Release
+Debug
+.vs
