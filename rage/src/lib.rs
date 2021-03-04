@@ -7,7 +7,7 @@ use age::{
     },
     plugin, IdentityFile, Recipient,
 };
-use gumdrop::{Options, ParsingStyle};
+// use gumdrop::{Options, ParsingStyle};
 use i18n_embed::{
     fluent::{fluent_language_loader, FluentLanguageLoader},
     DesktopLanguageRequester,
@@ -170,49 +170,19 @@ fn read_recipients(
     Ok(recipients)
 }
 
-#[derive(Debug, Options)]
-struct AgeOptions {
-    #[options(free, help = "Path to a file to read from.")]
+#[derive(Debug)]
+pub struct AgeOptions {
     input: Option<String>,
-
-    #[options(help = "Print this help message and exit.")]
     help: bool,
-
-    #[options(help = "Print version info and exit.", short = "V")]
     version: bool,
-
-    #[options(help = "Encrypt the input (the default).")]
     encrypt: bool,
-
-    #[options(help = "Decrypt the input.")]
     decrypt: bool,
-
-    #[options(help = "Encrypt with a passphrase instead of recipients.")]
     passphrase: bool,
-
-    #[options(
-        help = "Maximum work factor to allow for passphrase decryption.",
-        meta = "WF",
-        no_short
-    )]
     max_work_factor: Option<u8>,
-
-    #[options(help = "Encrypt to a PEM encoded format.")]
     armor: bool,
-
-    #[options(help = "Encrypt to the specified RECIPIENT. May be repeated.")]
     recipient: Vec<String>,
-
-    #[options(
-        help = "Encrypt to the recipients listed at PATH. May be repeated.",
-        meta = "PATH"
-    )]
     recipients_file: Vec<String>,
-
-    #[options(help = "Use the identity file at IDENTITY. May be repeated.")]
     identity: Vec<String>,
-
-    #[options(help = "Write the result to the file at path OUTPUT.")]
     output: Option<String>,
 }
 
@@ -391,68 +361,16 @@ fn decrypt(opts: AgeOptions) -> Result<(), error::DecryptError> {
     }
 }
 
-fn main() -> Result<(), error::Error> {
-    use std::env::args;
-
-    env_logger::builder()
-        .format_timestamp(None)
-        .filter_level(log::LevelFilter::Off)
-        .parse_default_env()
-        .init();
+fn _main(opts: AgeOptions) -> Result<(), error::Error> {
+    // env_logger::builder()
+    //     .format_timestamp(None)
+    //     .filter_level(log::LevelFilter::Off)
+    //     .parse_default_env()
+    //     .init();
 
     let requested_languages = DesktopLanguageRequester::requested_languages();
     i18n_embed::select(&*LANGUAGE_LOADER, &TRANSLATIONS, &requested_languages).unwrap();
     age::localizer().select(&requested_languages).unwrap();
-
-    let args = args().collect::<Vec<_>>();
-
-    let opts = AgeOptions::parse_args(&args[1..], ParsingStyle::default()).unwrap_or_else(|e| {
-        eprintln!("{}: {}", args[0], e);
-        std::process::exit(2);
-    });
-
-    // If you are piping input with no other args, this will not allow
-    // it.
-    if (console::user_attended() && args.len() == 1) || opts.help_requested() {
-        let binary_name = args[0].as_str();
-        let keygen_name = format!("{}-keygen", binary_name);
-        let usage_a = format!(
-            "{} [--encrypt] -r RECIPIENT [-i IDENTITY] [-a] [-o OUTPUT] [INPUT]",
-            binary_name
-        );
-        let usage_b = format!(
-            "{} --decrypt [-i IDENTITY] [-o OUTPUT] [INPUT]",
-            binary_name
-        );
-        let example_a = format!("$ {} -o key.txt", keygen_name);
-        let example_a_output = "age1ql3z7hjy54pw3hyww5ayyfg7zqgvc7w3j2elw8zmrj2kg5sfn9aqmcac8p";
-        let example_b = format!(
-            "$ tar cvz ~/data | {} -r {} > data.tar.gz.age",
-            binary_name, example_a_output
-        );
-        let example_c = format!(
-            "$ {} -d -i key.txt -o data.tar.gz data.tar.gz.age",
-            binary_name
-        );
-
-        println!(
-            "{}",
-            i18n_embed_fl::fl!(
-                LANGUAGE_LOADER,
-                "rage-usage",
-                usage_a = usage_a,
-                usage_b = usage_b,
-                flags = AgeOptions::usage(),
-                keygen_name = keygen_name,
-                example_a = example_a,
-                example_a_output = example_a_output,
-                example_b = example_b,
-                example_c = example_c,
-            )
-        );
-
-        return Ok(());
-    }
 
     if opts.version {
         println!("rage {}", env!("CARGO_PKG_VERSION"));
@@ -484,3 +402,23 @@ fn main() -> Result<(), error::Error> {
         }
     }
 }
+
+#[no_mangle]
+pub extern fn wrapper() {
+    let opts = AgeOptions{
+        input: Some("".to_string()),
+        help: false,
+        version: false,
+        encrypt: false,
+        decrypt: false,
+        passphrase: false,
+        max_work_factor: Some(0),
+        armor: false,
+        recipient: vec!["".to_string()],
+        recipients_file: vec!["".to_string()],
+        identity: vec!["".to_string()],
+        output: Some("".to_string()),
+    };
+    _main(opts);
+}
+// undo changes to main, return Result<(), Error>, have wrapper function be exposed and convert to string in one place.
