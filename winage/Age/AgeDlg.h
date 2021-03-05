@@ -4,7 +4,6 @@
 
 #pragma once
 #pragma comment(lib, "userenv.lib")
-#pragma comment(lib, "msvcrt.lib")
 #pragma comment(lib, "ws2_32.lib")
 #pragma comment(lib, "advapi32.lib")
 #pragma comment(lib, "bcrypt.lib")

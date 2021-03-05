@@ -15,8 +15,44 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_0032C2DFEAD75DAD45C81277A9168A3A"
+        "OwnerKey" = "8:_5A11402233FC4A58B989C92F008074D6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2DA3CF01AC0EDFD02DE8488CDDF1F7A6"
+        "OwnerKey" = "8:_5A11402233FC4A58B989C92F008074D6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4F5E97A8E359279DBA173249477313E8"
+        "OwnerKey" = "8:_5A11402233FC4A58B989C92F008074D6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_5A11402233FC4A58B989C92F008074D6"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5AEA912D8D815AD004F77BC574944DC1"
+        "OwnerKey" = "8:_5A11402233FC4A58B989C92F008074D6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_732AB589748882DD896F5A99A01B9776"
+        "OwnerKey" = "8:_5A11402233FC4A58B989C92F008074D6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BD4E4A85C14204707A254F94E631BB19"
+        "OwnerKey" = "8:_5A11402233FC4A58B989C92F008074D6"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -44,6 +80,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
         "Release"
@@ -98,6 +142,126 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0032C2DFEAD75DAD45C81277A9168A3A"
+            {
+            "SourcePath" = "8:OLEACC.dll"
+            "TargetName" = "8:OLEACC.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_8114F3DBDD8D42A0B830B7F91A215ABB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2DA3CF01AC0EDFD02DE8488CDDF1F7A6"
+            {
+            "SourcePath" = "8:UxTheme.dll"
+            "TargetName" = "8:UxTheme.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_8114F3DBDD8D42A0B830B7F91A215ABB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:4"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4F5E97A8E359279DBA173249477313E8"
+            {
+            "SourcePath" = "8:MSIMG32.dll"
+            "TargetName" = "8:MSIMG32.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_8114F3DBDD8D42A0B830B7F91A215ABB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5AEA912D8D815AD004F77BC574944DC1"
+            {
+            "SourcePath" = "8:gdiplus.dll"
+            "TargetName" = "8:gdiplus.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_8114F3DBDD8D42A0B830B7F91A215ABB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_732AB589748882DD896F5A99A01B9776"
+            {
+            "SourcePath" = "8:bcrypt.dll"
+            "TargetName" = "8:bcrypt.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_8114F3DBDD8D42A0B830B7F91A215ABB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BD4E4A85C14204707A254F94E631BB19"
+            {
+            "SourcePath" = "8:IMM32.dll"
+            "TargetName" = "8:IMM32.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_8114F3DBDD8D42A0B830B7F91A215ABB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -178,7 +342,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Age"
         "ProductCode" = "8:{767DB81C-B10C-4469-9320-F53AC1A7CA24}"
-        "PackageCode" = "8:{D9B9FAEE-2F70-4838-949B-FEFECEB9AD25}"
+        "PackageCode" = "8:{3D4911DD-43D9-43C9-AD4B-2FF952223F60}"
         "UpgradeCode" = "8:{34C9C835-96D7-4DA4-A29D-93188E4281B6}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"

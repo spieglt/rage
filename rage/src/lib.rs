@@ -439,8 +439,9 @@ pub extern fn wrapper(opts: *mut COptions) -> *const c_char {
         output: Some("".to_string()),
     };
     match _main(opts) {
-        Ok(()) => CString::new("no error").unwrap().as_ptr(),
-        Err(e) => CString::new(format!("{:?}", e)).unwrap().as_ptr(),
+        Ok(()) => CString::new("no error").unwrap().into_raw(),
+        Err(e) => CString::new(format!("{:?}", e)).unwrap().into_raw(),
     }
+    // TODO: make functions to free these pointers,
 }
 // undo changes to main, return Result<(), Error>, have wrapper function be exposed and convert to string in one place.
