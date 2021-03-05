@@ -1,5 +1,3 @@
-#![forbid(unsafe_code)]
-
 use age::{
     armor::{ArmoredReader, ArmoredWriter, Format},
     cli_common::{
@@ -7,7 +5,6 @@ use age::{
     },
     plugin, IdentityFile, Recipient,
 };
-// use gumdrop::{Options, ParsingStyle};
 use i18n_embed::{
     fluent::{fluent_language_loader, FluentLanguageLoader},
     DesktopLanguageRequester,
@@ -424,6 +421,11 @@ pub struct COptions {
 
 #[no_mangle]
 pub extern fn wrapper(opts: *mut COptions) -> *const c_char {
+    unsafe {
+        // let s = CStr::from_ptr((*opts).input).to_string_lossy().into_owned();
+        let s = CStr::from_ptr((*opts).input).to_str().unwrap().to_string();
+        return CString::new(s).unwrap().into_raw();
+    }
     let opts = AgeOptions{
         input: Some("".to_string()),
         help: false,
@@ -442,6 +444,11 @@ pub extern fn wrapper(opts: *mut COptions) -> *const c_char {
         Ok(()) => CString::new("no error").unwrap().into_raw(),
         Err(e) => CString::new(format!("{:?}", e)).unwrap().into_raw(),
     }
-    // TODO: make functions to free these pointers,
+    // TODO:
+    // make functions to free these pointers, set vs project as utf-8?
+    // what to do with encrypting .age file?
+    // make registry shell path relative?
+    // how to update async? need to?
+    // bcrypt.lib?
 }
 // undo changes to main, return Result<(), Error>, have wrapper function be exposed and convert to string in one place.
