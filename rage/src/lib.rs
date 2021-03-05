@@ -16,8 +16,10 @@ use lazy_static::lazy_static;
 use rust_embed::RustEmbed;
 use secrecy::ExposeSecret;
 use std::convert::TryFrom;
+use std::ffi::{CStr, CString};
 use std::fs::File;
 use std::io::{self, BufRead, BufReader};
+use std::os::raw::c_char;
 use std::path::Path;
 
 mod error;
@@ -406,22 +408,22 @@ fn _main(opts: AgeOptions) -> Result<(), error::Error> {
 #[repr(C)]
 #[derive(Debug)]
 pub struct COptions {
-    input: *const u8,
-    help: u8,
-    version: u8,
-    encrypt: u8,
-    decrypt: u8,
-    passphrase: u8,
-    max_work_factor: u8,
-    armor: u8,
-    recipient: *const *const u8,
-    recipients_file: *const *const u8,
-    identity: *const *const u8,
-    output: *const u8,
+    input: *const c_char,
+    help: c_char,
+    version: c_char,
+    encrypt: c_char,
+    decrypt: c_char,
+    passphrase: c_char,
+    max_work_factor: c_char,
+    armor: c_char,
+    recipient: *const *const c_char,
+    recipients_file: *const *const c_char,
+    identity: *const *const c_char,
+    output: *const c_char,
 }
 
 #[no_mangle]
-pub extern fn wrapper(opts: COptions) {
+pub extern fn wrapper(opts: *mut COptions) -> *const c_char {
     let opts = AgeOptions{
         input: Some("".to_string()),
         help: false,
@@ -436,6 +438,9 @@ pub extern fn wrapper(opts: COptions) {
         identity: vec!["".to_string()],
         output: Some("".to_string()),
     };
-    _main(opts);
+    match _main(opts) {
+        Ok(()) => CString::new("no error").unwrap().as_ptr(),
+        Err(e) => CString::new(format!("{:?}", e)).unwrap().as_ptr(),
+    }
 }
 // undo changes to main, return Result<(), Error>, have wrapper function be exposed and convert to string in one place.

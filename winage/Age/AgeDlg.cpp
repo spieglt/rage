@@ -6,6 +6,7 @@
 #include "Age.h"
 #include "AgeDlg.h"
 #include "afxdialogex.h"
+#include "winuser.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -64,6 +65,7 @@ BEGIN_MESSAGE_MAP(CAgeDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(ENCRYPT_BUTTON, &CAgeDlg::OnBnClickedButton)
 END_MESSAGE_MAP()
 
 
@@ -152,3 +154,26 @@ HCURSOR CAgeDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CAgeDlg::OnBnClickedButton()
+{
+	// TODO: Add your control notification handler code here
+	struct COptions *cOptions = (struct COptions*)malloc(sizeof(struct COptions));
+	cOptions->input = "myfile";
+	/*cOptions.help
+		version
+		encrypt
+		decrypt
+		passphrase
+		max_work_factor
+		armor
+		recipient
+		recipients_file
+		identity
+		output
+*/
+	char *res = wrapper(cOptions);
+	MessageBoxA(NULL, res, "Message", MB_OK);
+	//printf("%s\n", res);
+}

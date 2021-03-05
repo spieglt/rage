@@ -3,7 +3,11 @@
 //
 
 #pragma once
-
+#pragma comment(lib, "userenv.lib")
+#pragma comment(lib, "msvcrt.lib")
+#pragma comment(lib, "ws2_32.lib")
+#pragma comment(lib, "advapi32.lib")
+#pragma comment(lib, "bcrypt.lib")
 
 // CAgeDlg dialog
 class CAgeDlg : public CDialogEx
@@ -31,9 +35,11 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnBnClickedButton();
 };
 
-struct AgeOptions {
+struct COptions {
 	char *input; // should be option
 	BOOL help;
 	BOOL version;
@@ -47,3 +53,7 @@ struct AgeOptions {
 	char **identity;
 	char *output; // should be option
 };
+
+extern "C" {
+	char *wrapper(COptions *opts);
+}
