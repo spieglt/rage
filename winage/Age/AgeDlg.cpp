@@ -66,6 +66,7 @@ BEGIN_MESSAGE_MAP(CAgeDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(ENCRYPT_BUTTON, &CAgeDlg::OnBnClickedButton)
+	ON_EN_CHANGE(PASSWORD_BOX, &CAgeDlg::OnEnChangeBox)
 END_MESSAGE_MAP()
 
 
@@ -176,4 +177,15 @@ void CAgeDlg::OnBnClickedButton()
 	char *res = wrapper(cOptions);
 	MessageBoxA(NULL, res, "Message", MB_OK);
 	//printf("%s\n", res);
+}
+
+
+void CAgeDlg::OnEnChangeBox()
+{
+	// TODO:  If this is a RICHEDIT control, the control will not
+	// send this notification unless you override the CDialogEx::OnInitDialog()
+	// function and call CRichEditCtrl().SetEventMask()
+	// with the ENM_CHANGE flag ORed into the mask.
+
+	// TODO:  Add your control notification handler code here
 }

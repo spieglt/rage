@@ -36,6 +36,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedButton();
+	afx_msg void OnEnChangeBox();
 };
 
 struct COptions {

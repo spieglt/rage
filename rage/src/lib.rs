@@ -421,11 +421,12 @@ pub struct COptions {
 
 #[no_mangle]
 pub extern fn wrapper(opts: *mut COptions) -> *const c_char {
-    unsafe {
-        // let s = CStr::from_ptr((*opts).input).to_string_lossy().into_owned();
-        let s = CStr::from_ptr((*opts).input).to_str().unwrap().to_string();
-        return CString::new(s).unwrap().into_raw();
-    }
+    // receive string from C
+    // unsafe {
+    //     // let s = CStr::from_ptr((*opts).input).to_string_lossy().into_owned();
+    //     let s = CStr::from_ptr((*opts).input).to_str().unwrap().to_string();
+    //     return CString::new(s).unwrap().into_raw();
+    // }
     let opts = AgeOptions{
         input: Some("".to_string()),
         help: false,
@@ -450,5 +451,6 @@ pub extern fn wrapper(opts: *mut COptions) -> *const c_char {
     // make registry shell path relative?
     // how to update async? need to?
     // bcrypt.lib?
+    // finish bindings
 }
 // undo changes to main, return Result<(), Error>, have wrapper function be exposed and convert to string in one place.
