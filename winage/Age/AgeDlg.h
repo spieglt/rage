@@ -37,6 +37,7 @@ protected:
 public:
 	afx_msg void OnBnClickedButton();
 	afx_msg void OnEnChangeBox();
+	afx_msg void OnBnClickedPassphrase();
 };
 
 struct COptions {
@@ -45,7 +46,7 @@ struct COptions {
 	BOOL version;
 	BOOL encrypt;
 	BOOL decrypt;
-	BOOL passphrase;
+	char *passphrase; // should be option
 	char max_work_factor; // should be option
 	BOOL armor;
 	char **recipient;

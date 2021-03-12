@@ -1554,6 +1554,7 @@ dependencies = [
  "log",
  "man",
  "pinentry",
+ "rand 0.7.3",
  "rust-embed",
  "secrecy",
 ]

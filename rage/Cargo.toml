@@ -34,6 +34,7 @@ log = "0.4"
 pinentry = "0.3"
 rust-embed = "5"
 secrecy = "0.7"
+rand = "0.7"
 
 [dev-dependencies]
 clap = "3.0.0-beta.1"

@@ -67,6 +67,7 @@ BEGIN_MESSAGE_MAP(CAgeDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(ENCRYPT_BUTTON, &CAgeDlg::OnBnClickedButton)
 	ON_EN_CHANGE(PASSWORD_BOX, &CAgeDlg::OnEnChangeBox)
+	ON_BN_CLICKED(RADIO_PASSPHRASE, &CAgeDlg::OnBnClickedPassphrase)
 END_MESSAGE_MAP()
 
 
@@ -162,18 +163,18 @@ void CAgeDlg::OnBnClickedButton()
 	// TODO: Add your control notification handler code here
 	struct COptions *cOptions = (struct COptions*)malloc(sizeof(struct COptions));
 	cOptions->input = "myfile";
-	/*cOptions.help
-		version
-		encrypt
-		decrypt
-		passphrase
-		max_work_factor
-		armor
-		recipient
-		recipients_file
-		identity
-		output
-*/
+	cOptions->help = false;
+	cOptions->version = false;
+	cOptions->encrypt = true;
+	cOptions->decrypt = false;
+	cOptions->passphrase = "password";
+	cOptions->max_work_factor = 22;
+	cOptions->armor = false;
+	cOptions->recipient;
+	cOptions->recipients_file;
+	cOptions->identity;
+	cOptions->output;
+
 	char *res = wrapper(cOptions);
 	MessageBoxA(NULL, res, "Message", MB_OK);
 	//printf("%s\n", res);
@@ -188,4 +189,10 @@ void CAgeDlg::OnEnChangeBox()
 	// with the ENM_CHANGE flag ORed into the mask.
 
 	// TODO:  Add your control notification handler code here
+}
+
+
+void CAgeDlg::OnBnClickedPassphrase()
+{
+	this->GetDlgItem(PASSWORD_BOX)->ShowWindow(SW_SHOW);
 }
