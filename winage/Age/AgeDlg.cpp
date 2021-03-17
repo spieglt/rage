@@ -68,6 +68,8 @@ BEGIN_MESSAGE_MAP(CAgeDlg, CDialogEx)
 	ON_BN_CLICKED(ENCRYPT_BUTTON, &CAgeDlg::OnBnClickedButton)
 	ON_EN_CHANGE(PASSWORD_BOX, &CAgeDlg::OnEnChangeBox)
 	ON_BN_CLICKED(RADIO_PASSPHRASE, &CAgeDlg::OnBnClickedPassphrase)
+	ON_BN_CLICKED(RADIO_NATIVE, &CAgeDlg::OnBnClickedNative)
+	ON_BN_CLICKED(RADIO_SSH, &CAgeDlg::OnBnClickedSsh)
 END_MESSAGE_MAP()
 
 
@@ -103,6 +105,7 @@ BOOL CAgeDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
+	this->CheckDlgButton(RADIO_PASSPHRASE, BST_CHECKED);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -195,4 +198,28 @@ void CAgeDlg::OnEnChangeBox()
 void CAgeDlg::OnBnClickedPassphrase()
 {
 	this->GetDlgItem(PASSWORD_BOX)->ShowWindow(SW_SHOW);
+	this->GetDlgItem(PASSWORD_LABEL)->ShowWindow(SW_SHOW);
+	this->GetDlgItem(NATIVE_LABEL)->ShowWindow(SW_HIDE);
+	this->GetDlgItem(SSH_LABEL)->ShowWindow(SW_HIDE);
+	this->GetDlgItem(KEY_FILE_SELECTOR)->ShowWindow(SW_HIDE);
+}
+
+
+void CAgeDlg::OnBnClickedNative()
+{
+	this->GetDlgItem(PASSWORD_BOX)->ShowWindow(SW_HIDE);
+	this->GetDlgItem(PASSWORD_LABEL)->ShowWindow(SW_HIDE);
+	this->GetDlgItem(NATIVE_LABEL)->ShowWindow(SW_SHOW);
+	this->GetDlgItem(SSH_LABEL)->ShowWindow(SW_HIDE);
+	this->GetDlgItem(KEY_FILE_SELECTOR)->ShowWindow(SW_SHOW);
+}
+
+
+void CAgeDlg::OnBnClickedSsh()
+{
+	this->GetDlgItem(PASSWORD_BOX)->ShowWindow(SW_HIDE);
+	this->GetDlgItem(PASSWORD_LABEL)->ShowWindow(SW_HIDE);
+	this->GetDlgItem(NATIVE_LABEL)->ShowWindow(SW_HIDE);
+	this->GetDlgItem(SSH_LABEL)->ShowWindow(SW_SHOW);
+	this->GetDlgItem(KEY_FILE_SELECTOR)->ShowWindow(SW_SHOW);
 }

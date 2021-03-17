@@ -38,6 +38,8 @@ public:
 	afx_msg void OnBnClickedButton();
 	afx_msg void OnEnChangeBox();
 	afx_msg void OnBnClickedPassphrase();
+	afx_msg void OnBnClickedNative();
+	afx_msg void OnBnClickedSsh();
 };
 
 struct COptions {

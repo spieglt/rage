@@ -367,8 +367,7 @@ fn decrypt(opts: AgeOptions) -> Result<(), error::DecryptError> {
             decryptor
                 .decrypt(&SecretString::new(opts.passphrase.unwrap()), opts.max_work_factor)
                 .map_err(|e| e.into())
-                .and_then(|input| write_output(input, output));
-            Ok(())
+                .and_then(|input| write_output(input, output))
             // match read_secret(&fl!("type-passphrase"), &fl!("prompt-passphrase"), None) {
             //     Ok(passphrase) => decryptor
             //         .decrypt(&passphrase, opts.max_work_factor)
@@ -496,7 +495,7 @@ pub extern fn wrapper(opts: *mut COptions) -> *const c_char {
     };
     match _main(opts) {
         Ok(()) => CString::new("no error").unwrap().into_raw(),
-        Err(e) => CString::new(format!("{:?}", e)).unwrap().into_raw(),
+        Err(e) => CString::new(format!("error from rust: {:?}", e)).unwrap().into_raw(),
     }
     // TODO:
     // make functions to free these pointers, set vs project as utf-8?
